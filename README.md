@@ -1,36 +1,45 @@
-# Compte-rendu TP2 Introduction GIT
+# Compte-rendu TP3 Introduction GIT
+
+Faute de personnes pouvant faire le TP3 avec moi, je le ferais seul.  J'ai donc créer un second compte GitHub afin de pouvoir réaliser ce TP.
 
 ## Partie 1
 
-Trois commande qui vont être importante pour la suite :
+J'ai bien créer un repo TP3 et j'ai partagé l'accès avec mon second compte (qui est lui même sur un second ordinateur).
+**Arthos** est mon ordinateur **principal**
+**Porthos** est mon ordinateur **secondaire**
 
-- `git remote`  :
-
-    cette commande sert à gérer (ajouter) des dépôts distants (“remotes”). En d’autres termes, nous utiliserons cette commande pour créer un lien entre notre dépôt local  `tp1`  et celui distant que nous allons créer dans github.
-
-- `git push`  :
-
-    cette commande permet de mettre à jour le dépôt distant (e.g. github) à partir de la dernière version validée (_commit)_  de notre dépôt local.
-
-- `git pull`  :
-
-    cette commande sert à mettre à jour notre dépot local à partir de la dernière version de notre dépôt distant.
-Après avoir fait l'introduction, j'ai réussis à synchroniser le dépôt local et distant.
-
-### Exercice
-
-Nous devons modifier le fichier `Cryptomonnaie.java` puis le mettre sur le dépôt distant.
-Nous devons suivre dans l'ordre suivant ces étape :
-
- 1. `git pull` pour synchroniser les deux dépôts
- 2. On modifie le programme `Cryptomonnaie.java`
- 3. `git add Cryptomonnaie.java`
- 4. `git commit -m "Ajout de getters et setters"`
- 5. `git push`pour envoyer le contenu du dépôt local sur le dépôt distant
-Après avoir fait cela, nous pouvons constater qu'il y a bien eu un changement au niveau du programme `Cryptomonnaie.java`
+Du côté de Porthos, j'ai copié l'ensemble du TP2 dans le TP3 (sans le dossier `.git`).
+Puis j'ai add tous les fichiers, fait un commit puis push.
+Sur mon ordinateur principal, j'ai pu faire `git pull` et j'ai récupéré tous mon travail .
 
 ## Partie 2
 
-L'ancienne méthode pour synchroniser et très complexe et il existe une méthode bien plus simple : le clone.
-Nous avons bien créer un nouveau repo puis nous avons récupérer le lien ssh.
-La commande est la suivante : `git clone [lien ssh]`  
+J'ai réalisé toutes les étapes demandés et j'arrive bien au résultat suivant :
+
+    Test Portefeuille transfertDevise        ... OK
+    Test Portefeuille achatDevise            ... OK
+    Test CryptoMarche capitalEnEuros         ... OK
+    Test CryptoMarche capitalMonneaie        ... OK
+
+## Partie 3
+
+Pour l'instant nous avons que la branche **main**  mais nous voulons créer une seconde branche pour y réaliser un test.
+Voici pour l'instant le log de notre repo :
+
+    git log --graph --oneline --all --decorate --topo-order
+    * 28fb134 (HEAD -> main, origin/main, origin/HEAD) Correction bug CryptoMarche.java
+    * e3a90fc Code Portefeuille.java complété
+    * 5e5c9d3 Programme CryptoMarche.java complété
+    * 8021129 Ajout de 3 programmes Java
+    * 25df66b Copie du TP2 dans le TP3 ormis le README.md
+<br/>
+<br/>
+
+`git checkout -b test` qui permet de créer et switcher sur la branche **test**
+L’option `-b` nous permet de dire à `checkout` que nous allons créer cette nouvelle branche. `checkout` nous fait changer de branche et aller dans la branche **test**.
+
+Maintenant, quand on est dans la branche **test**, tous se qu'on ajoute n'est pas dans la branche **main**.
+Donc le fichier test.txt est seulement visible dans la branche **test**.
+Si nous voulons ajouter le contenu de **test** dans le main, on fait la commande : `git merge test` dans le **main**.
+
+J'ai ensuite répéter le même procédé pour faire l'exercice et j'ai réussi à créer deux Cryptomonnaie différente sur deux branches différentes puis fusionner ces deux branches.
